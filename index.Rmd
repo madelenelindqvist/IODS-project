@@ -1,5 +1,6 @@
 ---
 title: "IODS course project"
+autor: "Madelene Lindqvist"
 output:
   html_document:
     theme: cosmo
