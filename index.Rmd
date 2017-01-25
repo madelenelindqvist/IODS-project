@@ -1,6 +1,6 @@
 ---
 title: "IODS course project"
-autor: "Madelene Lindqvist"
+autor: "M Lindqvist"
 output:
   html_document:
     theme: cosmo
