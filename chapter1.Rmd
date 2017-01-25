@@ -13,7 +13,3 @@ The course grade will consist of grades from three different sources:
 
 To see my Github repository
 <https://github.com/madelenelindqvist/IODS-project>
-
-```{r}  
-  
-```
