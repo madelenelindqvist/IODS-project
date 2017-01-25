@@ -1,6 +1,7 @@
 
 # Chapter 1
 
+
 ## Open Data Science, spring 2017
 
 *This course is an online course using programs like R, RStudio and Github. Every week there are DataCamp and R exercises*
