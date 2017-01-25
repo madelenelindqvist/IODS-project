@@ -1,4 +1,18 @@
 
-# About the project
+# Chapter 1
 
-*Write a short description about the course and add a link to your github repository here. This is an R markdown (.Rmd) file so you can use R markdown syntax. See the 'Useful links' page in the mooc area (chapter 1) for instructions.*
+## Open Data Science, spring 2017
+
+*This course is an online course using programs like R, RStudio and Github. Every week there are DataCamp and R exercises*
+
+The course grade will consist of grades from three different sources:
+1. Points from DataCamp exercises
+2. Points from RStudio exercises
+3. Points from the final assignment
+
+To see my Github repository
+<https://github.com/madelenelindqvist/IODS-project>
+
+```{r}  
+  
+```
