@@ -1,0 +1,21 @@
+---
+title: "Open Data Science, spring 2017"
+author: "Madelene Lindqvist"
+output: html_document
+---
+
+
+*This course is an online course using programs like R, RStudio and Github. Every week there are DataCamp and R exercises*
+
+The course grade will consist of grades from three different sources:
+
+1. Points from DataCamp exercises
+
+2. Points from RStudio exercises
+
+3. Points from the final assignment
+
+
+To see my Github course diary go to:
+
+<https://madelenelindqvist.github.io/IODS-project/>
