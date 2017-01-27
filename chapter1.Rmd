@@ -4,12 +4,18 @@
 
 ## Open Data Science, spring 2017
 
-*This course is an online course using programs like R, RStudio and Github. Every week there are DataCamp and R exercises*
+### Description of the course
+
+*This course is an online course using programs like R, RStudio and Github. Every week there are DataCamp and R exercises to be submitted on Wednesday's and Friday's. There will also be peer-reviews on the RStudio exercises.*
 
 The course grade will consist of grades from three different sources:
+
 1. Points from DataCamp exercises
+
 2. Points from RStudio exercises
+
 3. Points from the final assignment
+
 
 To see my Github repository
 <https://github.com/madelenelindqvist/IODS-project>
