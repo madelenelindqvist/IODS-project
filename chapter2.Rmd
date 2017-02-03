@@ -1,10 +1,10 @@
 # Chapter 2: Regression and model validation
 
-*Describe the work you have done this week and summarize your learning.*
+*This week we have been learning about regression and model validation. Using DataCamp we have explored the codes and structure of R in detail. Using multiple linear regression we have thereafter completed a series of exercises in RStudio. The results from the data analysis part can be seen below.*
 
-- Describe your work and results clearly. 
-- Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods
-- Assume the reader has no previous knowledge of your data or the more advanced methods you are using  
+This is the analysis part of week two, in Open Data Science. The structure of the report is as follow: firstly the results are shown and below is the explanations required. 
+
+*Part 1
 
 ```{r, echo=FALSE, message=FALSE}
 students2014 <- read.csv("http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/learning2014.txt", header = T)
@@ -15,9 +15,9 @@ dim(students2014)
 ```
 
 
-The data describes the relationship between learning approaches and students achievements in an introductory statistics course in Finland. The data has got 183 observation and consists of 7 variables in total, these are gender, age, attitude, deep learning, strategic learning, surface learning and points from final exam. Above you can see results from using the commands "str" and "dim".
+The data describes the relationship between learning approaches and students achievements in an introductory statistics course in Finland. The data has got 183 observation and consists of 7 variables in total, these variables are gender, age, attitude, deep learning, strategic learning, surface learning and points from final exam. Above you can see results from using the commands "str" and "dim".
 
-
+*Part 2
 
 ```{r, echo=FALSE, message=FALSE}
 plot(students2014)
@@ -31,14 +31,16 @@ summary(students2014$points)
 
 ```
 
-Above you can see a graphical overview of the data. The summary command show that in the data there are 110 women and 56 men. The summary of the students age show that the average age is 25.51 years old. The median is 22 years. The attitude summary shows an average of 3.143, with a median of 3.2. The mean of deep, stragetic and surface learning is 3.680, 3.121 and 2.878 respectively. 
+Above you can see a graphical overview of the data. The summary command show that in the data there are 110 women and 56 men. The summary of the students age show that the average age is 25.51 years old. The median is 22 years. The attitude summary shows an average of 3.143, with a median of 3.2. The mean of deep, stragetic and surface learning is 3.680, 3.121 and 2.878 respectively. This means that people with a deep learning procedure get a higher grade in average in the exam, whereas the ones with only surface learning get the lowest grade in the exam. 
+
+*Part 3 and 4
 
 ```{r, echo=FALSE, message=FALSE}
 regression<-lm(points~gender+age+attitude, data=students2014)
 summary(regression)
 ```
 
-In this part we use a multiple regression analysis to analyse how points is affected by gender, age and attitude. The results show that only attitude have a significant statistic impact on the points from the exam. Age and gender does not play a part in the results (p-values are too high). Our model has an adjusted R-square value of 0.187, indicating that the chosen model explains 18.7 % of the variance shown in the dependent variable, points.  The residual standard error of the model is 5.315 on 162 degrees of freedom. 
+In this part we use a multiple regression analysis to analyse how points is affected by gender, age and attitude. The results show that only attitude have a significant statistical impact on the points from the exam. Age and gender does not play a part in the results (p-values are too high). Our model has an adjusted R-square value of 0.187, indicating that the chosen model explains 18.7 % of the variance shown in the dependent variable, points.  The residual standard error of the model is 5.315 on 162 degrees of freedom. The intercept is 13.43, this is also the point where the regression line cuts the y-axis. 
 
 Our overall model seems to be significant: F(3,162) = 13.64. 
 Next, we will test the model without age and gender as explanatory variables. 
@@ -48,17 +50,21 @@ regression<-lm(points~attitude, data=students2014)
 summary(regression)
 ```
 
-These results show that attitude alone explains 18.56 % (adjusted R-square) of the variance in the dependent variable, points. Still our model is not perfect, but attitude is still a statistically significant variable in the model. 
+These results show that attitude alone explains 18.56 % (adjusted R-square) of the variance in the dependent variable, points. Still our model is not perfect, but attitude is still a statistically significant variable in the model. The intercept is unchanged (still 13.43) in this model with only one explanatory variable. 
 
+The value of attitude is 3.6, indicating that attitude have a positive influence on the finals points in the exam. This means that if attitude increases 1, this will give us 3.6*1 points in the final grade. The better the attitude, the more the points. 
+
+*Part 5
 ```{r, echo=FALSE, message=FALSE}
-my_model2 <-lm(points~gender, data=students2014)
-
-#plot(students2014,model="Residuals vs Fitted")
-#normal qqplot
-#residuals vs leverage
+my_model2 <-lm(points~attitude, data=students2014)
 plot(my_model2)
 ```
-The residuals vs Fitted values shows us that our residuals are quite spread. Indicating that our data is not that good. 
-The Q-Q plot shows us how the standardized residuals follow the ??
 
-Residuals vs leverage gives us the...
+
+
+
+The *residuals vs Fitted values* shows us if the residuals and the fitted values are uncorrelated (which we want). Our plot in this case do not seem to indicate dependency between the residuals and the fitted values, which mean that maybe we can use the linear model. 
+
+The *Q-Q plot* is used to compare shapes of distributions, and this is shown in the graph. The Q-Q plot can give us information about location, scale and skewness. Our Q-Q plot shows us that our data is quite normally distributed since the dots follow the line nicely. 
+
+Our last graph is the *Residuals vs leverage* helps us find if there are any influential cases. Outliers can influence the regression analysis. We use the residuals vs leverage to see if the possible outliers have any influence on the results. The thing to focus on in this plot is if there is any in the upper right or the lower left part of the plot. In our data there not any problem with outliers.  
