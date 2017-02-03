@@ -1,5 +1,5 @@
 #Madelene Lindqvist
-#2.2.2017
+#3.2.2017
 #First RStudio data wrangling exercise
 
 learning2014<-read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS3-data.txt\t", header=T)
@@ -34,3 +34,5 @@ learning2014$poäng <- filter(learning2014$poäng, points >=1)
 
 
 write.csv(create_learning2014.txt)
+
+read.table(create_learning2014.txt)
