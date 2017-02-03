@@ -38,8 +38,9 @@ regression<-lm(points~gender+age+attitude, data=students2014)
 summary(regression)
 ```
 
-In this part we use a multiple regression analysis to analyse how points is affected by gender, age and attitude. The results show that only attitude have a significant statistic impact on the points from the exam. Age and gender does not play a part in the results. Our model has an adjusted R-square value of 0.187, indicating that the chosen model explains 18.7 % of the variance shown in the dependent variable, points. In other words, the chosen explanatory variables are not that good. The residual standard error of the model is 5.315 on 162 degrees of freedom.
+In this part we use a multiple regression analysis to analyse how points is affected by gender, age and attitude. The results show that only attitude have a significant statistic impact on the points from the exam. Age and gender does not play a part in the results (p-values are too high). Our model has an adjusted R-square value of 0.187, indicating that the chosen model explains 18.7 % of the variance shown in the dependent variable, points.  The residual standard error of the model is 5.315 on 162 degrees of freedom. 
 
+Our overall model seems to be significant: F(3,162) = 13.64. 
 Next, we will test the model without age and gender as explanatory variables. 
 
 ```{r, echo=FALSE, message=FALSE}
@@ -50,5 +51,14 @@ summary(regression)
 These results show that attitude alone explains 18.56 % (adjusted R-square) of the variance in the dependent variable, points. Still our model is not perfect, but attitude is still a statistically significant variable in the model. 
 
 ```{r, echo=FALSE, message=FALSE}
+my_model2 <-lm(points~gender, data=students2014)
 
+#plot(students2014,model="Residuals vs Fitted")
+#normal qqplot
+#residuals vs leverage
+plot(my_model2)
 ```
+The residuals vs Fitted values shows us that our residuals are quite spread. Indicating that our data is not that good. 
+The Q-Q plot shows us how the standardized residuals follow the ??
+
+Residuals vs leverage gives us the...
