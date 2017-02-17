@@ -1,0 +1,109 @@
+---
+title: "Chapter 4"
+output: html_document
+---
+
+# Chapter 4: Clustering and classification
+
+By exploring the Boston data we find that it includes 506 rows(observations) and 14 columns(variables). The data shows us housing values in the suburbs of Boston. The first variable crim, referes to per capita crime rate and this variable will be a part of our estimations. Other variables are e.g. a dummy varialbe describing if the property is near the Charles river of not, the average number of rooms per dwelling, weighted mean of distances to the five Boston emplyment centres, accessability to radial hihgways and proportion of blacks in the area, just to mention a few. 
+
+```{r, echo=FALSE, message=FALSE} 
+#access the MASS package
+library(MASS)
+#load the data
+data("Boston")
+#explore the data
+str(Boston)
+```
+
+Just to explore the data a bit more i summarized the variables crime and taxes. As can be seen from the summaries, the variables scales are very different from each other.
+
+```{r, echo=FALSE}
+summary(Boston$tax)
+summary(Boston$crim)
+```
+
+Next, we can take a look at the plots of the variables. We can see is that not very many of the variables are normally distributed. 
+
+```{r pressure, echo=FALSE}
+pairs(Boston)
+```
+
+In order to explore the correlations between variables we can create the correlation matrix. From this we can see that some of the variables seem to be quite strongly correlated to each other. For instance we can see a positive correlation (0.63) between crime rate and accessibility to highways. 
+
+```{r, echo=FALSE}
+library(corrplot)
+correlation <- cor(Boston)
+correlation
+corrplot(correlation, method="circle", type="upper",cl.pos="b",tl.pos="d",t.cex=0.6)
+```
+
+The next step is to standardize the dataset. We do this with the *scale* code and thereafter look at the summary of the scaled data. 
+
+```{r, echo=FALSE}
+boston_scaled <- scale(Boston)
+summary(boston_scaled)
+```
+
+We see that all out variables now have a mean of zero and a standard deviation by one.
+
+THen we need to create a categorical crime rate variable and use the quantiles as break points. 
+
+```{r, echo=FALSE}
+#kvartil<- quantile(boston_scaled$crim)
+#labels<- c("low","modlow","modhigh","high")
+#crim_ny<-cut(boston_scaled$crim,breaks=kvartil,include.lowest=TRUE, label=labels)
+#table(crim_ny)
+```
+
+For some reason I did not get the $-sign to work in the equation. I will try to fix this before the deadline. Otherwise the rest of the assignment will not work.
+
+The next step is to take away the old crime date and add the new.
+
+```{r, echo=FALSE}
+#boston_scaled <- dplyr::select(boston_scaled, -crim)
+#boston_scaled <- data.frame(boston_scaled, crim_ny)
+#str(boston_scaled)
+```
+
+This datased will then be divided into training and testing set. 
+
+```{r, echo=FALSE}
+#n<-nrow(boston_scaled)
+#eighty <- sample(n, size=n*0.8)
+#train<-boston_scaled[eighty,]
+#test<- boston_scaled[-eighty,]
+```
+
+Hereafter comes the tricky part. We need to compute the LFA fit by using all the variables in the dataset and draw a biplot. 
+
+```{r, echo=FALSE}
+#lfa.fit <- lda(crim_ny ~ ., data=train)
+#lda.fit
+#lda.arrows <- function(x,myscale=0.5,arrow_heads=0.1,color="red",tex=0.75,choices=c(1,2)){
+ # heads <- coef(x)
+#  arrows(x0 = 0, y0 = 0,
+ #        x1 = myscale * heads[,choices[1]],
+  #       y1 = myscale * heads[choices[2]],col=color,lenght=arrow_heads)
+  #text(myscale * heads[,choices],labels=row.names(heads),cex=tex,col=color, pos=3)  
+#}
+#classes <- as.numeric(train$crim_ny)
+#plot(lda.fit,dimen=2, col=classes, pch=classes)
+ #    lda.arrows(lda.fit,myscale=2)
+```
+
+The last step of this assignment is to use the LDA-model we just created and predict classes for the test set and compare this by the correct classes. 
+
+```{r, echo=FALSE}
+#correct_classes <- test$crim_ny
+#test<-dplyr::select(test,-crim_ny)
+#lda.pred <-predict(lda.fit,newdata=test)
+#table(correct=correct_classes,predicted=lda.pred$class)
+```
+
+From this we can draw (hopefully, if I get it to work properly) the conclusion that our model is able to predict crime rates quite well. 
+
+
+
+
+
